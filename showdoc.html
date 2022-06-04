@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-0.9.511">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="description" content="Display symbol documentation in notebook and website">
+
+<title>nbprocess - showdoc</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+span.underline{text-decoration: underline;}
+div.column{display: inline-block; vertical-align: top; width: 50%;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+</style>
+
+
+<script src="site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="site_libs/quarto-nav/headroom.min.js"></script>
+<script src="site_libs/clipboard/clipboard.min.js"></script>
+<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="site_libs/quarto-search/fuse.min.js"></script>
+<script src="site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="./">
+<script src="site_libs/quarto-html/quarto.js"></script>
+<script src="site_libs/quarto-html/popper.min.js"></script>
+<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="site_libs/quarto-html/anchor.min.js"></script>
+<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/require.js/2.3.6/require.min.js" integrity="sha512-c3Nl8+7g4LMSTdrm621y7kf9v3SDPnhxLNhcjFJbKECVnmZHTdo+IRO05sNLTH/D3vA6u1X32ehoLC7WFVdheg==" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js" integrity="sha512-bLT0Qm9VnAYZDflyKcBaQ2gg0hSYNQrJ8RilYldYQ1FxQYoCLtUjuuRuZo+fjqhx/qtq/1itJ0C2ejDxltZVFg==" crossorigin="anonymous"></script>
+<script type="application/javascript">define('jquery', [],function() {return window.jQuery;})</script>
+
+
+<link rel="stylesheet" href="styles.css">
+<meta property="og:title" content="nbprocess - showdoc">
+<meta property="og:description" content="Display symbol documentation in notebook and website">
+<meta property="og:site-name" content="nbprocess">
+<meta name="twitter:title" content="nbprocess - showdoc">
+<meta name="twitter:description" content="Display symbol documentation in notebook and website">
+<meta name="twitter:card" content="summary">
+</head>
+
+<body class="nav-sidebar floating nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <a class="navbar-brand" href="./index.html">
+    <span class="navbar-title">nbprocess</span>
+  </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link active" href="./index.html" aria-current="page">Home</a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/fastai/nbprocess/tree/master/"><i class="bi bi-github" role="img">
+</i> 
+ </a>
+  </li>  
+</ul>
+              <div class="quarto-toggle-container">
+                  <a href="" class="quarto-reader-toggle nav-link" onclick="window.quartoToggleReader(); return false;" title="Toggle reader mode">
+  <div class="quarto-reader-toggle-btn">
+  <i class="bi"></i>
+  </div>
+</a>
+              </div>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">showdoc</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation floating overflow-auto">
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./read" class="sidebar-item-text sidebar-link">read</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./maker" class="sidebar-item-text sidebar-link">maker</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./process" class="sidebar-item-text sidebar-link">process</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./export" class="sidebar-item-text sidebar-link">export</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./doclinks" class="sidebar-item-text sidebar-link">doclinks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./sync" class="sidebar-item-text sidebar-link">sync</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./merge" class="sidebar-item-text sidebar-link">merge</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./showdoc" class="sidebar-item-text sidebar-link active">showdoc</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./processors" class="sidebar-item-text sidebar-link">processors</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./cli" class="sidebar-item-text sidebar-link">cli</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./11_clean.html" class="sidebar-item-text sidebar-link">Clean</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./lookup" class="sidebar-item-text sidebar-link">Doc lookup</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./test" class="sidebar-item-text sidebar-link">Test Notebooks</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./migrate" class="sidebar-item-text sidebar-link">Migrate to nbprocess</a>
+  </div>
+</li>
+        <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="./index.html" class="sidebar-item-text sidebar-link">nbprocess</a>
+  </div>
+</li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        
+    <div class="toc-actions"><div><i class="bi bi-github"></i></div><div class="action-links"><p><a href="https://github.com/fastai/nbprocess/tree/master/issues/new" class="toc-action">Report an issue</a></p></div></div></div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">showdoc</h1>
+</div>
+
+<div>
+  <div class="description">
+    Display symbol documentation in notebook and website
+  </div>
+</div>
+
+
+<div class="quarto-title-meta">
+
+    
+    
+  </div>
+  
+
+</header>
+
+<!-- WARNING: THIS FILE WAS AUTOGENERATED! DO NOT EDIT! -->
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="get_name" class="level4">
+<h4 class="anchored" data-anchor-id="get_name">get_name</h4>
+<blockquote class="blockquote">
+<p><strong><code>get_name</code></strong><code>(obj)</code></p>
+</blockquote>
+<p>Get the name of <code>obj</code></p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="qual_name" class="level4">
+<h4 class="anchored" data-anchor-id="qual_name">qual_name</h4>
+<blockquote class="blockquote">
+<p><strong><code>qual_name</code></strong><code>(obj)</code></p>
+</blockquote>
+<p>Get the qualified name of <code>obj</code></p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="showdocrenderer" class="level3">
+<h3 class="anchored" data-anchor-id="showdocrenderer">ShowDocRenderer</h3>
+<blockquote class="blockquote">
+<p><strong><code>ShowDocRenderer</code></strong><code>(sym, disp: bool = True)</code></p>
+</blockquote>
+<p>Show documentation for <code>sym</code></p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="basicmarkdownrenderer" class="level3">
+<h3 class="anchored" data-anchor-id="basicmarkdownrenderer">BasicMarkdownRenderer</h3>
+<blockquote class="blockquote">
+<p><strong><code>BasicMarkdownRenderer</code></strong><code>(sym, disp: bool = True)</code></p>
+</blockquote>
+<p>Show documentation for <code>sym</code></p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="show_doc" class="level4">
+<h4 class="anchored" data-anchor-id="show_doc">show_doc</h4>
+<blockquote class="blockquote">
+<p><strong><code>show_doc</code></strong><code>(sym, disp=True, renderer=None)</code></p>
+</blockquote>
+</section>
+</div>
+</div>
+<p>You can use <a href="https://nbprocess.fast.ai/showdoc#show_doc">show_doc</a> to document apis of functions, classes or methods:</p>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="f" class="level4">
+<h4 class="anchored" data-anchor-id="f">f</h4>
+<blockquote class="blockquote">
+<p><strong><code>f</code></strong><code>(x: int = 1)</code></p>
+</blockquote>
+<p>func docstring</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="foo" class="level3">
+<h3 class="anchored" data-anchor-id="foo">Foo</h3>
+<blockquote class="blockquote">
+<p><strong><code>Foo</code></strong><code>(e: int)</code></p>
+</blockquote>
+<p>This is the docstring for the <strong>init</strong> method</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="foo.a_method" class="level4">
+<h4 class="anchored" data-anchor-id="foo.a_method">Foo.a_method</h4>
+<blockquote class="blockquote">
+<p><strong><code>Foo.a_method</code></strong><code>(a: list, b: dict, c)</code></p>
+</blockquote>
+<p>This is a method</p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="basichtmlrenderer" class="level3">
+<h3 class="anchored" data-anchor-id="basichtmlrenderer">BasicHtmlRenderer</h3>
+<blockquote class="blockquote">
+<p><strong><code>BasicHtmlRenderer</code></strong><code>(sym, disp: bool = True)</code></p>
+</blockquote>
+<p>Show documentation for <code>sym</code></p>
+</section>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<h3 class="anchored">F</h3>
+<blockquote class="blockquote"><code>F(x: int = 1)</code></blockquote><p>class docstring</p>
+</div>
+</div>
+<div class="cell">
+<div class="cell-output cell-output-display" data-execution_count="1">
+<hr>
+<section id="showdoc_nm" class="level4">
+<h4 class="anchored" data-anchor-id="showdoc_nm">showdoc_nm</h4>
+<blockquote class="blockquote">
+<p><strong><code>showdoc_nm</code></strong><code>(tree)</code></p>
+</blockquote>
+<p>Get the fully qualified name for showdoc.</p>
+</section>
+</div>
+</div>
+
+
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    setTimeout(function() {
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      let href = ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const cites = ref.parentNode.getAttribute('data-cites').split(' ');
+    tippyHover(ref, function() {
+      var popup = window.document.createElement('div');
+      cites.forEach(function(cite) {
+        var citeDiv = window.document.createElement('div');
+        citeDiv.classList.add('hanging-indent');
+        citeDiv.classList.add('csl-entry');
+        var biblioDiv = window.document.getElementById('ref-' + cite);
+        if (biblioDiv) {
+          citeDiv.innerHTML = biblioDiv.innerHTML;
+        }
+        popup.appendChild(citeDiv);
+      });
+      return popup.innerHTML;
+    });
+  }
+});
+</script>
+</div> <!-- /content -->
+
+
+
+</body></html>
